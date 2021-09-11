@@ -1,0 +1,68 @@
+<h1 align="center" class="display-4 mb-5">Inscription</h1>
+<div style="width:40%; margin: 25px auto" >
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label><b>Email address</b></label>
+      <input [(ngModel)]="user.email" type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Enter email" email required autofocus  #email="ngModel">
+      <div  *ngIf="email.invalid && (email.dirty ||email.touched)" >
+          <div *ngIf="email.errors.required" >
+            Vérifier votre email.
+          </div>
+          <div *ngIf="email.errors.email">
+              Email invalide.
+          </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <br>
+      <label><b>Name</b></label>
+      <input [(ngModel)]="user.name" type="text" class="form-control form-control-lg" id="name" name="name" placeholder="Your name" required #name="ngModel">
+        <div  *ngIf="name.invalid && (name.dirty ||name.touched)">
+            <div *ngIf="name.errors.required">
+              Vérifier votre nom.
+            </div>
+            <div *ngIf="name.errors.minlength">
+                Nom doit etre au minimum 3 characters.
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+      <br>
+      <label><b>Mot de passe</b></label>
+      <input  [(ngModel)]="user.password" type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Password" minlength="3" required #password="ngModel">
+        <div  *ngIf="password.invalid && (password.dirty ||password.touched)">
+            <div *ngIf="password.errors.required">
+              Vérifier votre mot de passe.
+            </div>
+            <div *ngIf="password.errors.minlength">
+              mot de passe doit etre au minimum 3 characters.
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+      <br>
+      <label><b>Téléphone</b></label>
+      <input [(ngModel)]="user.phone" type="text" class="form-control form-control-lg" id="phone" name="phone" placeholder="Phone" required #phone="ngModel" >
+        <div  *ngIf="phone.invalid && (phone.dirty ||phone.touched)">
+            <div *ngIf="phone.errors.required">
+              Vérifier votre numéro de téléphone.
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+      <br>
+      <label><b>Addresse</b></label>
+      <input [(ngModel)]="user.address" type="text" class="form-control form-control-lg" id="address" name="address" placeholder="Address" required #address="ngModel">
+        <div  *ngIf="address.invalid && (address.dirty ||address.touched)">
+            <div *ngIf="address.errors.required">
+              Vérifier votre adresse.
+            </div>
+        </div>
+    </div>
+    <div class="pricing" align="right">
+      <br>
+      <button type="submit" class="btn-buy" [disabled]="!form.form.valid">S'inscrire</button>
+    </div>
+  </form>
+</div>
+

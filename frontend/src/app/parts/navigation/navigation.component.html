@@ -1,0 +1,108 @@
+<nav class="navbar navbar-expand-lg navbar-white bg-white">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="root">
+      <img src="assets/img/flexilogob.png" width="70" height="40" class="d-inline-block align-top" alt="">
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+
+      <div class="navbar-nav" *ngIf="!currentUser || currentUser.role == Role.Customer">  
+        <a class="nav-item nav-link "
+            routerLink="/acceuil">
+              Acceuil
+          </a>
+          <li class="dropdown"><a href="#" routerLink="/produits"><span>Produits</span> <i class="bi bi-chevron-right"></i></a>
+            <ul>
+              <li><a href="#" routerLink="/categorie/0">Livres</a></li>
+              <li><a href="#" routerLink="/categorie/1">Aliments</a></li>
+              <li><a href="#" routerLink="/categorie/2">vêtement</a></li>
+              <li><a href="#" routerLink="/categorie/3">Boissons</a></li>
+            </ul>
+          </li>
+          
+          <a class="nav-item nav-link"
+             routerLink="/commercants">
+             Commerçants
+          </a>
+          <a class="nav-item nav-link"
+             routerLink="/abonnements">
+             Abonnements
+          </a>
+          <a class="nav-item nav-link"
+             routerLink="/contact">
+             Contact
+          </a>
+          <a class="nav-item nav-link"
+             routerLink="/propos">
+             à propos
+          </a>
+          <a class="nav-item nav-link"
+             routerLink="/blog">
+             Blog
+          </a>
+          <a class="nav-item nav-link"
+             routerLink="/faq">
+             FAQ
+          </a>
+          <a class="nav-item nav-link"
+             routerLink="/welyne">
+             Welyne
+          </a>
+      </div>
+
+      <div class="navbar-nav ml-auto">
+          <a *ngIf="!currentUser || currentUser.role == Role.Customer"
+                  class="nav-item nav-link " routerLink="/panier">
+              <i class="fas fa-shopping-cart"></i>
+              Panier
+          </a>
+
+          <ng-container *ngIf="currentUser; else noUser">
+            <a *ngIf="currentUser.role == Role.Manager"
+              class="nav-item nav-link " routerLink="/ventes/produits/ajouter">
+                  <i class="fas fa-list-ul"></i>
+                  Nouveau produit
+              </a>
+              <a *ngIf="currentUser.role == Role.Manager"
+              class="nav-item nav-link " routerLink="/ventes/produits">
+                  <i class="fas fa-list-ul"></i>
+                  Liste de produits
+              </a>
+              <a *ngIf="currentUser.role == Role.Manager"
+              class="nav-item nav-link " routerLink="/commandes">
+                  <i class="fas fa-list-ul"></i>
+                  Commandes
+              </a>
+              <!--
+              <a *ngIf="currentUser.role == Role.Manager" 
+              class="nav-item nav-link " routerLink="/statistiques">
+                <i class="fas fa-list-ul"></i>
+                Statistiques
+            </a>
+            -->
+              <a class="nav-item nav-link " routerLink="/profile">
+                  {{name}}
+              </a>
+              <a class="nav-item nav-link " (click)="logout()" routerLink="/connecter" [queryParams]="{logout: true}">
+                  Déconnexion
+              </a>
+          </ng-container>
+          <ng-template #noUser>
+              <a class="nav-item nav-link " routerLink="/connecter">
+                  Se connecter
+              </a>
+              <a class="nav-item nav-link " routerLink="/inscription">
+                  Inscription
+              </a>
+          </ng-template>
+      </div>
+  </div>
+</div>
+</nav>
+
+
+
